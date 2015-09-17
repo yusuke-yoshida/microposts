@@ -2,3 +2,7 @@
     <%= gravatar_for @user %>
     <%= @user.name %>
 </h1>
+
+<div class=text-center>
+    <%= link_to "edit profile" , edit_user_path, class: "btn btn-success"%>
+</div>
