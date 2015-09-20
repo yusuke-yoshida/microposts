@@ -1,0 +1,27 @@
+<div class="row">
+    <aside class="col-md-4">
+        <section class="user_info">
+            <h1>
+                <%= gravatar_for @user %>
+                <%= @user.name %>
+            </h1>
+            <span><%= link_to "#{@user.microposts.count} microposts", user_path %></span>
+            <span><%= @user.following_users.count %> following</span>
+            <span><%= link_to "#{@user.follower_users.count} followers", followers_user_path %></span>
+        </section>
+    </aside>
+    <div class="col-md-8">
+        <%= render 'follow_form' if logged_in? %>
+        <% if @user.following_users.any? %>
+            <h3>
+                Following (<%= @user.following_users.count %>)
+            </h3>
+            <ol class="microposts">
+                <% @following_users.each do |following_user| %>
+                    <li><%= link_to gravatar_for(following_user, size: 50), following_user %></li>
+                    <li><span class="user"><%= link_to following_user.name, user_path(following_user) %></span></li>
+                <% end %>
+            </ol>
+        <% end %>
+    </div>
+</div>
