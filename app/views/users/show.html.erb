@@ -9,6 +9,9 @@
             <span><%= link_to "#{@user.following_users.count} following", following_user_path %></span>
             <span><%= link_to "#{@user.follower_users.count} followers", followers_user_path %></span>
         </section>
+        <div>
+            <%= link_to "edit profile" , edit_user_path, class: "btn btn-success"%>
+        </div>
     </aside>
     <div class="col-md-8">
         <%= render 'follow_form' if logged_in? %>
