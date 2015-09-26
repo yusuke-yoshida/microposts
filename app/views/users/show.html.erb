@@ -10,18 +10,22 @@
             <span><%= link_to "#{@user.follower_users.count} followers", followers_user_path %></span>
         </section>
         <div>
-            <%= link_to "edit profile" , edit_user_path, class: "btn btn-success"%>
+            <strong>Location: </strong><%= @user.location %>
+        </div>
+        <div>
+            <strong>Description: </strong><%= @user.description %>
+        </div>
+        <div>
+            <% if current_user == @user %>
+                <%= link_to "edit profile" , edit_user_path, class: "btn btn-success" if logged_in? %>
+            <% end %>
         </div>
     </aside>
     <div class="col-md-8">
         <%= render 'follow_form' if logged_in? %>
-        <% if @user.microposts.any? %>
-            <h3>
-                Microposts (<%= @user.microposts.count %>)
-            </h3>
-            <ol class="microposts">
-                <%= render @microposts %>
-            </ol>
-        <% end %>
+        <h3>
+            Microposts (<%= @user.microposts.count %>)
+        </h3>
+        <%= render 'shared/feed' %>
     </div>
 </div>
